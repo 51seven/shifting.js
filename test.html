@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+	body {
+		background-color: #121212;
+		color: white;
+		height: 2000px;
+		text-align: center;
+		font-family: 'Georgia';
+		font-size: 3em;
+	}
+	.s1 {
+		position: relative;
+		top: 500px;
+	}
+	.s2 {
+		position: relative;
+		top: 1000px;
+	}
+	</style>
+</head>
+<body>
+	<div class="s1">Scroll down...</div>
+	<div class="s2">YEEEEEEAH</div>
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+	<script src="jquery.shifting.min.js"></script>
+	<script>
+	$.shifting({
+		update: 10,
+		animation: [
+			{
+				selector: '.s1',
+				duration: '100%',
+				properties: {
+					translateY: [0, 20],
+					opacity: [1, 0]
+				}
+			},
+			{
+				selector: '.s2',
+				duration: '120%',
+				properties: {
+					translateY: [0, -30],
+					opacity: [0 , 1],
+					scale: [.3, 1]
+				}
+			}
+		]
+	});
+	</script>
+</body>
+</html>
