@@ -5,47 +5,46 @@
 	<title>Document</title>
 	<style>
 	body {
-		background-color: #121212;
+		background-color: #efefef;
 		color: white;
 		height: 2000px;
 		text-align: center;
 		font-family: 'Georgia';
-		font-size: 3em;
+		font-size: 2em;
+		padding: 0;
+		margin: 0;
 	}
 	.s1 {
+		margin-top: 700px;
+		width: 100%;
+		height: 400px;
 		position: relative;
-		top: 500px;
+		background-color: #232323;
+		overflow: hidden;
 	}
 	.s2 {
-		position: relative;
-		top: 1000px;
+		position: absolute;
+		top: 150px;
+		width: 100%;
+		text-align: center;
 	}
 	</style>
 </head>
 <body>
-	<div class="s1">Scroll down...</div>
-	<div class="s2">YEEEEEEAH</div>
+	<div class="s1">
+		<div class="s2">Lorem ipsum dolor sit amet</div>
+	</div>
 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-	<script src="jquery.shifting.min.js"></script>
+	<script src="jquery.shifting.js"></script>
 	<script>
 	$.shifting({
-		update: 10,
+		prepare: false,
 		animation: [
 			{
-				selector: '.s1',
-				duration: '100%',
-				properties: {
-					translateY: [0, 20],
-					opacity: [1, 0]
-				}
-			},
-			{
 				selector: '.s2',
-				duration: '120%',
+				duration: '50%',
 				properties: {
-					translateY: [0, -30],
-					opacity: [0 , 1],
-					scale: [.3, 1]
+					translateY: [0, 100]
 				}
 			}
 		]
