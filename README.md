@@ -13,11 +13,11 @@ shifting.js
 >
 > – _[Goorgen](https://www.youtube.com/watch?v=1gYE5TyijxE)_
 
-shifting.js is a jQuery Plugin which makes it ease to animate elements based on your scroll position. It uses the performant CSS3 `transform` Property to guarantee a stable and high FPS even on Retina-Screens. With a simple JSON Object you can define all your animations without spamming data-attribute all over your HTML.
+shifting.js is a jQuery Plugin which makes it easy to animate elements based on your scroll position. It uses the performant CSS3 `transform` Property to guarantee a stable and high FPS even on Retina-Screens. With a simple JSON Object you can define all your animations without spamming data-attributes all over your HTML.
 
 ## Background Knowledge
 
-The duration and process of an animation is based on the window height and scroll position. Every animation starts not until a pixel of the element is visible and the animation will be stopped when it's not visible anymore. The window height is equal to a duration of 100% (of course you can change the duration). Read more to know how.
+The duration and process of an animation is based on the window height and scroll position. Every animation starts not until a pixel of the element is visible and the animation will be stopped when it's not visible anymore. The window height is equal to a duration of 100% (of course you can change the duration). Read more to find out how.
 
 ## First Steps
 
@@ -164,7 +164,7 @@ Type: `String`
 
 Default: `0%`
 
-The delay of the animation in percent. `100%` is equals to the window height. `50%` will start the animation when you have scrolled half the window height – when without the `delay` the animation will be at `50%`.
+The delay of the animation in percent. `100%` is equals to the window height. `50%` will start the animation when you have scrolled half the window height – when without the `delay` the animation will be at `50%`, with the `delay` it will be at `0%`.
 
 #### easing
 Type: `String`
@@ -228,7 +228,7 @@ Type: `Integer`
 
 Default: `10`
 
-The interval in `ms` when shifting.js refreshes all element positions. Because of performance optimization shifting.js doesn't update on scroll events.
+The interval in `ms` when shifting.js refreshes all element properties. Because of performance optimization shifting.js doesn't update on scroll events.
 
 #### prepare
 
