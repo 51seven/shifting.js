@@ -1,101 +1,183 @@
-jquery.shifting.js
-===========
+shifting.js
+=========
 
-### Simple and performant animations based on scroll position
+### Simple and performant scroll animations
 
-As [Goorgen](https://www.youtube.com/watch?v=1gYE5TyijxE) said
-> Shift it, shift it in Forward
+> Shift it, shit it in Forward
+> 
 > Shift it, shift it in Reverse
-> _[...]_
+>
+> Domestic or Foreign
+>
 > I believe you need my service
+>
+> – _[Goorgen](https://www.youtube.com/watch?v=1gYE5TyijxE)_
 
-This Plugin makes it easy to animate elements when scrolling through your page. It uses performant CSS `transform()` to guarantee a stable and high FPS even on Highres-Screens. With a simple JSON Syntax you can define the animation properties for every element you want to animate.
-
-No spamming your HTML with data-attributes.
-
+shifting.js is a jQuery Plugin which makes it ease to animate elements based on your scroll position. It uses the performant CSS3 `transform` Property to guarantee a stable and high FPS even on Retina-Screens. With a simple JSON Object you can define all your animations without spamming data-attribute all over your HTML.
 
 ## Background Knowledge
 
-The duration of an animation is not calculated in Milliseconds. It's relative to your scroll position. An animation starts when the first pixel of the element is visible and ends when it's not visible anymore. So the window height is equal to a duration of 100%. You can change this duration for each animation, e.g. a duration of 50% will be finished if the element passed half the window.
+The duration and process of an animation is based on the window height and scroll position. Every animation starts not until a pixel of the element is visible and the animation will be stopped when it's not visible anymore. The window height is equal to a duration of 100% (of course you can change the duration). Read more to know how.
 
 ## First Steps
 
-shifting.js is a plugin for jQuery. That said you need to include jQuery first. After that you can initialize the plugin with
-
-``` js	
-$.shifting()
+Be sure to include jQuery before including shifting.js. You can initialize the Plugin with:
+```js
+$.shifting();
 ```
 
-All your setting will be passed as an object to shifting.js.
-
+All Your settings will be passed in an object to shifting.js.
 
 ## Animations
 
-The animation syntax looks like this:
-
-``` js
+All animation definitions are are in an array with the key `animation`. In this array every element is an animation for one element. Look at this example:
+```js
 $.shifting({
-	animation: [
-		{
-			selector: '#scroll',
-			properties: {
-				translateY: [0, 100]
-			}
-		}
-	]
+    animation: [
+        {
+            selector: '#scroll',
+            properties: {
+                translateY: [0, 100]
+            }
+        }    
+    ]
 });
 ```
 
-This will animate the element with the ID `scroll`, starting with a y-position of 0 and animate it to a y-position of 100. You can animate the following properties:
-`translateX`, `translateY`, `scale`, `rotate`, `opacity`.
+This will bind an animation to the element with the ID of `scroll` in your HTML. It will smoothly animate the Y-Position starting with `0` end ending with `100px`. (The unit is omitted.)
 
-You can animate more elements with more properties like this:
-
-``` js
+Defining a second animation to this is looks like this:
+```js
 $.shifting({
-	animation: [
-		{
-			selector: '#scrollFade',
-			properties: {
-				translateY: [0, 100],
-				opacity: [1, 0]
-			}
-		},
-		{
-			selector: '#zoom',
-			properties: {
-				zoom: [1, 1.5],
-				translateX: [-100, 100],
-				opacity: [1, .5]
-			}
-		},
-		{
-			selector: '.teaser > h1',
-			properties: {
-				rotate: [-5, 5],
-				translateY: [0, -200]
-			}
-		},
-	]
+    animation: [
+        {
+            selector: '#scroll',
+            properties: {
+                translateY: [0, 100]
+            }
+        },
+        {
+            selector: '#fadeout',
+            properties: {
+                translateY: [-10, 10],
+                opacity: [100, 0]
+            }
+        }
+    ]
 });
 ```
 
-There are a few more options besides `selector` and `properties`.
+### Properties
 
-`duration`
-percentage (String) like `50%` to change the duration of the animation.
+As you can see in the previous example you can set more properties to your animation. Every property expects an array as value with the start value and the end value: `[startValue, endValue]`. All values are specified without units.
+
+#### translateX
+
+Default: `[0, 0]`
+
+Unit: `px`
+
+Range: `-∞ to ∞`
+
+Rouded decimal places: `1`
+
+Moves the element along the x-axis. Use `transform-origin` in your CSS to change its origin.
+
+#### translateY
+
+Default: `[0, 0]`
+
+Unit: `px`
+
+Range: `-∞ to ∞`
+
+Rouded decimal places: `1`
+
+Moves the element along the y-asix. Use `transform-origin` in your CSS to change its origin.
+
+#### scale
+
+Default: `[1, 1]`
+
+Unit: `none`
+
+Range: `0 to ∞`
+
+Rouded decimal places: `3`
+
+Scales the element up and down. Use `transform-origin` in your CSS to change its origin.
+
+#### rotate
+
+Default: `[0, 0]`
+
+Unit: `deg`
+
+Range: `-∞ to ∞`
+
+Rouded decimal places: `1`
+
+Rotates the element. Use `transform-origin` in your CSS to change its origin.
+
+#### opacity
+
+Default: `[1, 1]`
+
+Unit: `none`
+
+Range: `0 to 1`
+
+Rouded decimal places: `3`
+
+Changes the opacity of the element.
+
+### Options
+
+There are a few more options besides `selector` and `properties` you can access.
+
+#### selector
+
+Type: `String`
+
+Default: `''`
+
+The selector of your element. Selector syntax is basic CSS syntax.
+
+#### properties
+
+Type: `Object`
+
+Default: `{}`
+
+The properties you want to animate.
+
+#### duration
+
+Type: `String`
+
 Default: `100%`
 
-`delay`
-percentage (String) like `50%` to change when the animation starts
+The duration of the animation in percent. `100%` is equals to the window height.
+
+#### delay
+Type: `String`
+
 Default: `0%`
 
-`easing`
-easing Name (String) to change the easing of the animation.
-Values: `linear`, `easeInQuad`, `easeOutQuad`, `easeInOutQuad`
+The delay of the animation in percent. `100%` is equals to the window height. `50%` will start the animation when you have scrolled half the window height – when without the `delay` the animation will be at `50%`.
+
+#### easing
+Type: `String`
+
 Default: `linear`
 
-An example:
+Values: `linear`, `easeInQuad`, `easeOutQuad`, `easeInOutQuad`
+
+The easing function of the animation.
+
+### Example
+
+Here's an example of a more complex animation
 
 ``` js
 $.shifting({
@@ -115,26 +197,51 @@ $.shifting({
 			delay: '50%',
 			properties: {
 				translateY: [-100, 0]
+				opacity: [1, 0]
 			}
 		},
 	]
 });
 ```
 
-## Options
+## Advanced
 
-You can change the updateInterval and the preparing of the elements.
+shifting.js allows you to define more options on your own for a much better experience*.
 
-`update`
-time (Integer) in ms when the plugin refreshes all values.
+\* Advanced options are not really a big thing and aren't very useful at the moment.
+
+### Options
+
+Besides `animation` you can define more options in shifting.js
+
+#### animation
+
+Type: `Array`
+
+Default: `[]`
+
+Definitions of all animations.
+
+#### update
+
+Type: `Integer`
+
 Default: `10`
-_Note: The Plugin won't react to a scrollEvent. Instead it refreshes all values every XXms.
 
-`prepare`
-boolean – If set to `true` the plugin loops first through every animation and sets all properties of all elements to the first value.
+The interval in `ms` when shifting.js refreshes all element positions. Because of performance optimization shifting.js doesn't update on scroll events.
+
+#### prepare
+
+Type: `Boolean`
+
 Default: `true`
 
-Setting options looks like this:
+By default shifting.js loops first through all elements you want to animate and set them to their start value. If set to `false` it will skip this step.
+
+### Example
+
+With your special advanced settings initializing shifting.js could look like this:
+
 ``` js
 $.shifting({
 	update: 20,
@@ -147,4 +254,8 @@ $.shifting({
 
 ## Epilogue
 
-I didn't test this as much, there are a few things to do. For example at the moment it only tracks vertical scrolling. Rotating more than 100deg seems to spazz out the element and the JSON structure of the passed object isn't the best. I'm looking forward to make this very useful. KTHXBYE.
+Dear User, this plugin is in a very early alpha state. I didn't test this as much and there are a few things on my TODO list. For example at the moment it only tracks vertical scrolling. If you have a fancy site where you want to scroll horizontal, I'm sorry for you. Rotating more than 100deg will eventually lead the element to spazz out. The JSON structure of the passed object isn't very sophisticated. I'm looking forward to make this thing useful for more cases. KTHXBYE.
+
+## Animation counter
+
+I used 25x `animation` in this documentation. Duh.
