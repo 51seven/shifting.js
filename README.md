@@ -74,8 +74,11 @@ As you can see in the previous example you can set more properties to your anima
 #### translateX
 
 Default: `[0, 0]`
+
 Unit: `px`
+
 Range: `-∞ to ∞`
+
 Rouded decimal places: `1`
 
 Moves the element along the x-axis. Use `transform-origin` in your CSS to change its origin.
