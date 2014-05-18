@@ -59,6 +59,7 @@
 	<script src="jquery.shifting.js"></script>
 	<script>
 	$.shifting({
+		prepare: false,
 		animation: [
 			{
 				selector: '.e1 .s2',
@@ -66,7 +67,7 @@
 				delay: '20%',
 				properties: {
 					opacity: [0, 1],
-					translateY: [300, 200]
+					translateY: [200, 100]
 				}
 			},
 			{
@@ -79,15 +80,17 @@
 			},
 			{
 				selector: '.e2 .s2',
-				duration: '40%',
-				delay: '60%',
+				duration: '30%',
+				delay: '70%',
 				properties: {
 					opacity: [1, 0],
-					scale: [1, 2]
+					scale: [1, 1.5]
 				}
 			},
 			{
 				selector: '.e3 .s2',
+				delay: '0%',
+				duration: '100%',
 				properties: {
 					translateY: [100, -200]
 				}
@@ -98,7 +101,7 @@
 				properties: {
 					translateX: [-100, 0],
 					translateY: [-100, 0],
-					rotate: [10, 0]
+					rotate: [3, 0]
 				}
 			},
 			{
@@ -106,7 +109,7 @@
 				delay: '40%',
 				duration: '60%',
 				properties: {
-					translateX: [0, 400],
+					translateX: [0, 100],
 					opacity: [1, 0]
 				}
 			}
