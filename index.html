@@ -17,16 +17,21 @@
 	.s0 {
 		color: #232323;
 		width: 100%;
-		margin-top: 200px;
+		margin-top: 400px;
+		margin-bottom: 400px;
+		font-size: 3em;
 		text-align: center;
 	}
 	.s1 {
-		margin-top: 700px;
 		width: 100%;
-		height: 400px;
+		height: 500px;
 		position: relative;
 		background-color: #232323;
 		overflow: hidden;
+	}
+	.light {
+		background-color: none;
+		color: #232323;
 	}
 	.s2 {
 		position: absolute;
@@ -38,8 +43,17 @@
 </head>
 <body>
 	<div class="s0">Please scroll down…</div>
-	<div class="s1">
-		<div class="s2">Lorem ipsum dolor sit amet</div>
+	<div class="s1 e1">
+		<div class="s2">Do simple parallax effects…</div>
+	</div>
+	<div class="s1 e2 light">
+		<div class="s2">…or more advanced animation procedures.</div>
+	</div>
+	<div class="s1 e3">
+		<div class="s2">Everything is based on your scroll position, …</div>
+	</div>
+	<div class="s1 e4 light">
+		<div class="s2">… without you having to think about it.</div>
 	</div>
 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
 	<script src="jquery.shifting.js"></script>
@@ -47,12 +61,53 @@
 	$.shifting({
 		animation: [
 			{
-				selector: '.s2',
+				selector: '.e1 .s2',
 				duration: '50%',
 				delay: '20%',
 				properties: {
 					opacity: [0, 1],
-					translateY: [0, 100]
+					translateY: [0, -100]
+				}
+			},
+			{
+				selector: '.e2 .s2',
+				duration: '50%',
+				properties: {
+					opacity: [0, 1],
+					translateX: [-200, 0]
+				}
+			},
+			{
+				selector: '.e2 .s2',
+				duration: '50%',
+				delay: '50%',
+				properties: {
+					opacity: [1, 0],
+					scale: [1, 2]
+				}
+			},
+			{
+				selector: '.e3 .s2',
+				properties: {
+					translateY: [300, -300]
+				}
+			},
+			{
+				selector: '.e3 .s2',
+				duration: '30%',
+				properties: {
+					translateX: [-300, 0],
+					translateY: [-200, 0],
+					rotate: [-30, 0]
+				}
+			},
+			{
+				selector: '.e3 .s2',
+				delay: '30%',
+				duration: '70%',
+				properties: {
+					translateX: [0, 400],
+					opacity: [1, 0]
 				}
 			}
 		]
