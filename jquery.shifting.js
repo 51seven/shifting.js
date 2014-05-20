@@ -64,8 +64,9 @@
 					$(this).elementIsVisible(function() {
 						var newValue = $.extend(_self.elDefault, value);
 						var processDelay = _self.props.windowHeight * percentageToMathExp(newValue.delay);
-						var processHeight = (_self.props.windowHeight * percentageToMathExp(newValue.duration)) + $this.outerHeight();
+						var processHeight = _self.props.windowHeight * percentageToMathExp(newValue.duration);
 						var process = (_self.props.windowHeight + _self.props.scrollTop) - $this.offset().top;
+						console.log('total: '+processHeight+' – progress: '+process+' – delay: '+processDelay);
 						if(processHeight + processDelay > process && process > processDelay)
 							_self.animate($this, newValue.easing, newValue.properties, processHeight, process - processDelay);
 					});
